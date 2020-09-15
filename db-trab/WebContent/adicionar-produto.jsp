@@ -14,7 +14,7 @@
 	<form action="adicionar" method="POST" name="adicionar">
 		Nome: <input type="text" name="nome"/> <br />
 		<br/>
-		Preï¿½o: <input type="text" name="preco"/> <br />
+		Preço: <input type="text" name="preco"/> <br />
 		<br/>
 		Quantidade: <input type="text" name="quantidade"/> <br />
 		<br/>

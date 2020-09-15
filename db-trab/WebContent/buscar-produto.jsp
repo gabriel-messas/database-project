@@ -34,7 +34,7 @@
 			<tr>
 				<th> Nome </th>
 				<th> Quantidade </th>
-				<th> Preï¿½o </th>
+				<th> Preço </th>
 			</tr>
 			<c:forEach var="produto" items="${sessionScope.listaRecentes}">
 				<tr>

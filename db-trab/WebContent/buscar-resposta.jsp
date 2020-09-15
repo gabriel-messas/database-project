@@ -20,7 +20,7 @@
 			<tr>
 				<th> Nome </th>
 				<th> Quantidade </th>
-				<th> Preï¿½o </th>
+				<th> Preço </th>
 			</tr>
 			<c:forEach var="produto" items="${requestScope.listaProdutos}">
 				<tr>
