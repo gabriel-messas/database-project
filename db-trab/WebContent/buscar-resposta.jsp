@@ -20,7 +20,9 @@
 			<tr>
 				<th> Nome </th>
 				<th> Quantidade </th>
-				<th> Preço </th>
+				<th> Preço de Venda </th>
+				<th> Preço de Compra 1 </th>
+				<th> Preço de Compra 2 </th>
 			</tr>
 			<c:forEach var="produto" items="${requestScope.listaProdutos}">
 				<tr>
@@ -31,13 +33,22 @@
 			        	${produto.quantidade}
 			        </td>
 			        <td>
-			        	${produto.preco}
+			        	${produto.precoVenda}
 			        </td>
 			        <td>
-						<a href="/trab/alterar?id=${produto.getId()}">Alterar</a>
+			        	${produto.precoCompra1}
+			        </td>
+			        <td>
+			        	${produto.precoCompra2}
+			        </td>
+			        <td>
+						<a href="/db-trab/alterar?id=${produto.getId()}">Alterar</a>
 					</td>
 					<td>
-						<a href="/trab/excluir?id=${produto.getId()}">Excluir</a>
+						<a href="/db-trab/excluir?id=${produto.getId()}">Excluir</a>
+					</td>
+					<td>
+						<a href="/db-trab/addCarrinho.jsp?pnome=${produto.getNome()}&pquantidade=${produto.getQuantidade()}&ppreco=${produto.getPrecoVenda()}">Adicionar para Venda</a>
 					</td>
 				</tr>
 			</c:forEach>		
@@ -50,7 +61,7 @@
 	
 	<form action="buscar-produto.jsp">
 		<br/>
-		<input type="submit" value="Retornar" />
+		<input type="submit" value="Retornar à Busca" />
 	</form>
 </body>
 </html>

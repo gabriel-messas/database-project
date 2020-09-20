@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,16 +14,20 @@
 	<form action="adicionar" method="POST" name="adicionar">
 		Nome: <input type="text" name="nome"/> <br />
 		<br/>
-		Preço: <input type="text" name="preco"/> <br />
+		Preço de Compra 1: <input type="text" name="precoCompra1"/> <br />
+		<br/>
+		Preço de Compra 2: <input type="text" name="precoCompra2"/> <br />
+		<br/>
+		Preço de Venda: <input type="text" name="precoVenda"/> <br />
 		<br/>
 		Quantidade: <input type="text" name="quantidade"/> <br />
 		<br/>
-		<input type="button" value="Cadastrar" onclick="validaInput()"/> <br />
+		<input type="button" value="Cadastrar Produto" onclick="validaInput()"/> <br />
 	</form>
 	
 	<form action="start.jsp">
 		<br/>
-		<input type="submit" value="Voltar" />
+		<input type="submit" value="Voltar ao Menu" />
 	</form>
 </body>
 </html>

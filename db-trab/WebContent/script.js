@@ -4,7 +4,7 @@ function validaInput() {
 		swal("Dados incompletos", "Insira o nome do produto!", "error");
 		return false;
 	}
-	else if(document.adicionar.preco.value == ""){
+	else if(document.adicionar.precoVenda.value == ""){
 		swal("Dados incompletos", "Insira o valor do produto!", "error");
 		return false;
 	}

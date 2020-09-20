@@ -57,11 +57,11 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `trab`.`venda`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trab`.`venda` (
-  `id` INT NOT NULL,
-  `produto` VARCHAR(45) NOT NULL,
-  `quantidade` INT NOT NULL,
-  `preco` DOUBLE NOT NULL,
-  PRIMARY KEY (`id`))
+  `ID` INT NOT NULL,
+  `PRODUTO` VARCHAR(45) NOT NULL,
+  `QUANTIDADE` INT NOT NULL,
+  `PRECO` DOUBLE NOT NULL,
+  PRIMARY KEY (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

@@ -1,39 +1,19 @@
-<%@ page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="ISO-8859-1">
+<title>Checar Estoque Mínimo</title>
 <style>
 	table, th, td { border: 1px solid black; }
 </style>
-<title>Buscar Produto</title>
 </head>
 <body>
-	<form action="buscar">
-		Digite o nome do produto: 
-		<input type="text" name="nome" />
-		<br/>
-		<br/>
-		<input type="submit" value="Buscar" />
-	</form>
-	
-	<br/>
-	
-	Dica: Busque sem digitar nada para obter a lista completa de produtos
-	
-	<br/><br/>
-	
-	<form action="start.jsp">
-		<input type="submit" value="Voltar ao Menu" />
-	</form>
-	
-	<br/>
-		
-	<c:if test="${not empty sessionScope.listaRecentes}">		
-		Lista de produtos recentes:
+	<c:if test="${not empty requestScope.listaEstoqueBaixo}">
+		Produtos com Quantidade Baixa em Estoque:
+		<br/><br/>
 		<table>
 			<tr>
 				<th> Nome </th>
@@ -42,7 +22,7 @@
 				<th> Preço de Compra 1 </th>
 				<th> Preço de Compra 2 </th>
 			</tr>
-			<c:forEach var="produto" items="${sessionScope.listaRecentes}">
+			<c:forEach var="produto" items="${requestScope.listaEstoqueBaixo}">
 				<tr>
 			        <td>
 			        	${produto.nome}
@@ -65,13 +45,18 @@
 					<td>
 						<a href="/db-trab/excluir?id=${produto.getId()}">Excluir</a>
 					</td>
-					<td>
-						<a href="/db-trab/addCarrinho.jsp?pnome=${produto.getNome()}&pquantidade=${produto.getQuantidade()}&ppreco=${produto.getPrecoVenda()}">Adicionar para Venda</a>
-					</td>
 				</tr>
-			</c:forEach>
+			</c:forEach>		
 		</table>
-	</c:if>	
-		
+	</c:if>
+	
+	<c:if test="${empty requestScope.listaEstoqueBaixo}">
+		Nenhum produto com quantidade menor ou igual a 2 foi encontrado no estoque!
+	</c:if>
+	
+	<form action="start.jsp">
+		<br/>
+		<input type="submit" value="Retornar ao Menu" />
+	</form>
 </body>
 </html>

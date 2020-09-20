@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ProdutoDAO {
@@ -19,15 +17,16 @@ public class ProdutoDAO {
 	
 	public void inserir(Produto produto) {
 		String sql = 
-				"INSERT INTO produto (NOME, PRECO, QUANTIDADE) VALUES (?,?,?)";
+				"INSERT INTO produto (NOME, PRECOVENDA, QUANTIDADE, PRECOCOMPRA1, PRECOCOMPRA2) VALUES (?,?,?,?,?)";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			
-
 			prstate.setString(1, produto.getNome());
-			prstate.setDouble(2, produto.getPreco());
+			prstate.setDouble(2, produto.getPrecoVenda());
 			prstate.setInt(3, produto.getQuantidade());
+			prstate.setString(4, produto.getPrecoCompra1());
+			prstate.setString(5, produto.getPrecoCompra2());
 			
 			prstate.execute();
 			
@@ -53,8 +52,10 @@ public class ProdutoDAO {
 				Produto produto = new Produto();
 				produto.setId(resultado.getInt("ID"));
 				produto.setNome(resultado.getString("NOME"));
-				produto.setPreco(resultado.getDouble("PRECO"));
+				produto.setPrecoVenda(resultado.getDouble("PRECOVENDA"));
 				produto.setQuantidade(resultado.getInt("QUANTIDADE"));
+				produto.setPrecoCompra1(resultado.getString("PRECOCOMPRA1"));
+				produto.setPrecoCompra2(resultado.getString("PRECOCOMPRA2"));
 				
 				produtos.add(produto);
 			}
@@ -104,8 +105,10 @@ public class ProdutoDAO {
 			produto = new Produto();
 			produto.setId(resultado.getInt("ID"));
 			produto.setNome(resultado.getString("NOME"));
-			produto.setPreco(resultado.getDouble("PRECO"));
+			produto.setPrecoVenda(resultado.getDouble("PRECOVENDA"));
 			produto.setQuantidade(resultado.getInt("QUANTIDADE"));
+			produto.setPrecoCompra1(resultado.getString("PRECOCOMPRA1"));
+			produto.setPrecoCompra2(resultado.getString("PRECOCOMPRA2"));
 				
 			resultado.close();
 			prstate.close();
@@ -118,14 +121,16 @@ public class ProdutoDAO {
 	}
 	
 	public void alterar(Produto produto) {
-		String sql = "UPDATE produto SET NOME=?, PRECO=?, QUANTIDADE=? WHERE ID=?";
+		String sql = "UPDATE produto SET NOME=?, PRECOVENDA=?, QUANTIDADE=?, PRECOCOMPRA1=?, PRECOCOMPRA2=? WHERE ID=?";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			prstate.setString(1, produto.getNome());
-			prstate.setDouble(2, produto.getPreco());
+			prstate.setDouble(2, produto.getPrecoVenda());
 			prstate.setInt(3, produto.getQuantidade());
-			prstate.setInt(4, produto.getId());
+			prstate.setString(4, produto.getPrecoCompra1());
+			prstate.setString(5, produto.getPrecoCompra2());
+			prstate.setInt(6, produto.getId());
 			
 			prstate.execute();
 			prstate.close();

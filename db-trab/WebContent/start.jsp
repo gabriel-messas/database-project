@@ -8,13 +8,6 @@
 <title>MENU</title>
 <style>
 	{border: 5px dotted lime;}
-	/* body {
-		background-image: url("Loja.png");
-		background-size: 100% 140%;
-		background-repeat: no-repeat;
-		background-origin: padding-box;
-		background-position: center;
-	} */
 	h1{
   		font-size: 75px;
   		height: 50px;
@@ -89,7 +82,9 @@
 	<div align="center">
 		
 		<img style="width:30%;height:30%;" src="Loja.png">
-		</br>
+		</br><br>
+		${username} logged in successfully
+		</br><br>
 		<span style="color: white; background-color: black; font-size: 60px; height: 50px;"> MENU </span>
 		<hr width=225, align="center">
 		
@@ -108,6 +103,26 @@
 				<td>
 					<form action="buscar-produto.jsp">
 						<button type="submit" class="btn"><span>BUSCAR PRODUTO</span></button>
+					</form>
+				</td>
+			</tr>
+			
+			<tr><td><br></td></tr>
+	
+			<tr>
+				<td>
+					<form action="checar">
+						<button type="submit" class="btn"><span>CHECAR ESTOQUE MÍNIMO</span></button>
+					</form>
+				</td>
+			</tr>
+			
+			<tr><td><br></td></tr>
+	
+			<tr>
+				<td>
+					<form action="agenda">
+						<button type="submit" class="btn"><span>AGENDA DE CONTATOS</span></button>
 					</form>
 				</td>
 			</tr>			

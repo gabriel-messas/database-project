@@ -2,10 +2,13 @@ package trab;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Produto implements Serializable{
 	private int id;
 	private String nome;
-	private double preco;
+	private double precoVenda;
+	private String precoCompra1;
+	private String precoCompra2;
 	private int quantidade;
 	
 	public int getId() {
@@ -14,8 +17,8 @@ public class Produto implements Serializable{
 	public String getNome() {
 		return nome;
 	}
-	public double getPreco() {
-		return preco;
+	public double getPrecoVenda() {
+		return precoVenda;
 	}
 	public int getQuantidade() {
 		return quantidade;
@@ -29,14 +32,26 @@ public class Produto implements Serializable{
 		this.nome = nome;
 	}
 	
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public void setPrecoVenda(double precoVenda) {
+		this.precoVenda = precoVenda;
 	}
 	
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 	
+	public String getPrecoCompra1() {
+		return precoCompra1;
+	}
+	public void setPrecoCompra1(String precoCompra1) {
+		this.precoCompra1 = precoCompra1;
+	}
+	public String getPrecoCompra2() {
+		return precoCompra2;
+	}
+	public void setPrecoCompra2(String precoCompra2) {
+		this.precoCompra2 = precoCompra2;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		Produto p = ((Produto)obj);

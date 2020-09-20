@@ -1,10 +1,6 @@
 package trab;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,8 +26,10 @@ public class AdicionarProdutoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Produto produto = new Produto();
 		produto.setNome(request.getParameter("nome"));
-		produto.setPreco(Double.parseDouble(request.getParameter("preco")));
+		produto.setPrecoVenda(Double.parseDouble(request.getParameter("precoVenda")));
 		produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+		produto.setPrecoCompra1(request.getParameter("precoCompra1"));
+		produto.setPrecoCompra2(request.getParameter("precoCompra2"));
 		
 		ProdutoDAO ptdao = new ProdutoDAO();
 		ptdao.inserir(produto);
