@@ -125,6 +125,16 @@
 						<button type="submit" class="btn"><span>AGENDA DE CONTATOS</span></button>
 					</form>
 				</td>
+			</tr>
+			
+			<tr><td><br></td></tr>
+	
+			<tr>
+				<td>
+					<form action="buscarVendas">
+						<button type="submit" class="btn"><span>LISTA DE VENDAS</span></button>
+					</form>
+				</td>
 			</tr>			
 		</table>
 		

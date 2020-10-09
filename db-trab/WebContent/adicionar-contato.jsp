@@ -8,11 +8,16 @@
 </head>
 <body>
 	<form action="adicionarContato" method="POST">
+		<p>Tipo do Contato</p>
+	    <input type="radio" id="cliente" name="cliente" value="1">
+	    <label for="cliente">Cliente</label><br>
+	    <input type="radio" id="fornecedor" name="cliente" value="0">
+	    <label for="fornecedor">Fornecedor</label><br/><br/>
 		Nome: <input type="text" name="nome"/> <br />
 		<br/>
 		Apelido: <input type="text" name="apelido"/> <br />
 		<br/>
-		Oficina: <input type="text" name="oficina"/> <br />
+		Empresa: <input type="text" name="empresa"/> <br />
 		<br/>
 		Endereço: <input type="text" name="endereco"/> <br />
 		<br/>

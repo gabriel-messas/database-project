@@ -145,8 +145,10 @@ public class VendaDAO {
 		String sql = "SELECT * FROM venda WHERE ID = ?";
 		
 		Venda venda = new Venda();
-		Produto produto = new Produto();
+		Produto produto;
 		Contato cliente = new Contato();
+		venda.setValorVenda(0);
+		LinkedList<Produto> produtos = new LinkedList<Produto>();
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			prstate.setLong(1, id);
@@ -154,6 +156,7 @@ public class VendaDAO {
 			ResultSet resultado = prstate.executeQuery();
 			
 			while(resultado.next()) {
+				produto = new Produto();
 				venda.setId(resultado.getInt("ID"));
 				
 				produto.setNome(resultado.getString("PRODUTO"));
@@ -161,9 +164,14 @@ public class VendaDAO {
 				produto.setPrecoVenda(resultado.getDouble("PRECO"));
 				cliente.setNome(resultado.getString("CLIENTE"));
 				venda.setCliente(cliente);
+				venda.setValorVenda(venda.getValorVenda()+(produto.getPrecoVenda()*produto.getQuantidade()));
 				
-				venda.getProdutos().add(produto);
+				System.out.println(produto);
+				
+				produtos.add(produto);
+				
 			}
+			venda.setProdutos(produtos);
 			
 			resultado.close();
 			prstate.close();

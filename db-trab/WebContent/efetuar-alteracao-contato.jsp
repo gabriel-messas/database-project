@@ -14,7 +14,7 @@
 	<form action="efetuarAlteracaoContato" method="POST">
 		Nome: <input type="text" name="nome" value="${contato.lastContatoAlterado.nome}"/> <br />
 		Apelido: <input type="text" name="apelido" value="${contato.lastContatoAlterado.apelido}"/> <br />
-		Oficina: <input type="text" name="oficina" value="${contato.lastContatoAlterado.oficina}"/> <br />
+		Empresa: <input type="text" name="empresa" value="${contato.lastContatoAlterado.empresa}"/> <br />
 		Endereço: <input type="text" name="endereco" value="${contato.lastContatoAlterado.endereco}"/> <br />
 		Bairro: <input type="text" name="bairro" value="${contato.lastContatoAlterado.bairro}"/> <br />
 		Cidade: <input type="text" name="cidade" value="${contato.lastContatoAlterado.cidade}"/> <br />
@@ -22,6 +22,7 @@
 		Telefone 2: <input type="text" name="telefone2" value="${contato.lastContatoAlterado.telefone2}"/> <br />
 		Telefone 3: <input type="text" name="telefone3" value="${contato.lastContatoAlterado.telefone3}"/> <br />
 		Observação: <input type="text" name="observacao" value="${contato.lastContatoAlterado.observacao}"/> <br />
+		Cliente: <input type="text" name="cliente" disabled value=<c:if test="${contato.lastContatoAlterado.cliente==1}">"CLIENTE"</c:if><c:if test="${contato.lastContatoAlterado.cliente==0}">"FORNECEDOR"</c:if>/>
 		<input type="hidden" name=id value="${contato.lastContatoAlterado.id}"/> <br />
 		<input type="submit" value="Alterar" />
 	</form>

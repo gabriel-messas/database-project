@@ -30,7 +30,7 @@ public class EfetuarAlteracaoContatoServlet extends HttpServlet {
 		contato.setId(Integer.parseInt(request.getParameter("id")));
 		contato.setNome(request.getParameter("nome"));
 		contato.setApelido(request.getParameter("apelido"));
-		contato.setOficina(request.getParameter("oficina"));
+		contato.setEmpresa(request.getParameter("empresa"));
 		contato.setEndereco(request.getParameter("endereco"));
 		contato.setBairro(request.getParameter("bairro"));
 		contato.setCidade(request.getParameter("cidade"));
@@ -38,6 +38,12 @@ public class EfetuarAlteracaoContatoServlet extends HttpServlet {
 		contato.setTelefone2(request.getParameter("telefone2"));
 		contato.setTelefone3(request.getParameter("telefone3"));
 		contato.setObservacao(request.getParameter("observacao"));
+		System.out.println(request.getParameter("cliente"));
+		
+		Contato contato2 = new Contato();
+		contato2 = agdao.buscarPorId(contato.getId());
+		
+		contato.setCliente(contato2.getCliente());
 		
 		agdao.alterar(contato);
 		

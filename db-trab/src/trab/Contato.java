@@ -7,7 +7,7 @@ public class Contato implements Serializable{
 	private int id;
 	private String nome;
 	private String apelido;
-	private String oficina;
+	private String empresa;
 	private String endereco;
 	private String bairro;
 	private String cidade;
@@ -15,6 +15,7 @@ public class Contato implements Serializable{
 	private String telefone2;
 	private String telefone3;
 	private String observacao;
+	private int cliente;
 	
 	public int getId() {
 		return id;
@@ -40,12 +41,12 @@ public class Contato implements Serializable{
 		this.apelido = apelido;
 	}
 
-	public String getOficina() {
-		return oficina;
+	public String getEmpresa() {
+		return empresa;
 	}
 
-	public void setOficina(String oficina) {
-		this.oficina = oficina;
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 	public String getEndereco() {
@@ -111,6 +112,14 @@ public class Contato implements Serializable{
 			return true;
 		}
 		return false;
+	}
+
+	public int getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(int i) {
+		this.cliente = i;
 	}
 	
 }

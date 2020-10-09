@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="column border-right">
 			<form action="buscarContato">
-				Digite o nome, apelido ou oficina do contato:
+				Digite o nome, apelido ou empresa do contato:
 				<input type="text" name="nome"/>
 				<br/><br/>
 				<input type="submit" value="Buscar"/>
@@ -77,9 +77,10 @@
 		<br/><br/>
 		<table>
 			<tr>
+				<th> Tipo </th>
 				<th> Nome </th>
 				<th> Apelido </th>
-				<th> Oficina </th>
+				<th> Empresa </th>
 				<th> Endereço </th>
 				<th> Bairro </th>
 				<th> Cidade </th>
@@ -90,6 +91,14 @@
 			</tr>
 			<c:forEach var="contato" items="${requestScope.listaContatos}">
 				<tr>
+					<td>
+			        	<c:if test="${contato.cliente==1}">
+			        	CLIENTE
+			        	</c:if>
+			        	<c:if test="${contato.cliente==0}">
+			        	FORNECEDOR
+			        	</c:if>
+			        </td>
 			        <td>
 			        	${contato.nome}
 			        </td>
@@ -97,7 +106,7 @@
 			        	${contato.apelido}
 			        </td>
 			        <td>
-			        	${contato.oficina}
+			        	${contato.empresa}
 			        </td>
 			        <td>
 			        	${contato.endereco}
@@ -127,7 +136,9 @@
 						<a href="/db-trab/excluirContato?id=${contato.getId()}">Excluir</a>
 					</td>
 					<td>
-						<a href="/db-trab/selecionarCliente?id=${contato.getId()}">Selecionar como Cliente</a>
+						<c:if test="${contato.cliente==1}">
+							<a href="/db-trab/selecionarCliente?id=${contato.getId()}">Selecionar como Cliente</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>		

@@ -17,14 +17,14 @@ public class AgendaDAO {
 	
 	public void inserir(Contato contato) {
 		String sql = 
-				"INSERT INTO contato (NOME, APELIDO, OFICINA, ENDERECO, BAIRRO, CIDADE, TELEFONE1, TELEFONE2, TELEFONE3, OBSERVACAO) VALUES (?,?,?,?,?,?,?,?,?,?)";
+				"INSERT INTO contato (NOME, APELIDO, EMPRESA, ENDERECO, BAIRRO, CIDADE, TELEFONE1, TELEFONE2, TELEFONE3, OBSERVACAO, CLIENTE) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			
 			prstate.setString(1, contato.getNome());
 			prstate.setString(2, contato.getApelido());
-			prstate.setString(3, contato.getOficina());
+			prstate.setString(3, contato.getEmpresa());
 			prstate.setString(4, contato.getEndereco());
 			prstate.setString(5, contato.getBairro());
 			prstate.setString(6, contato.getCidade());
@@ -32,6 +32,7 @@ public class AgendaDAO {
 			prstate.setString(8, contato.getTelefone2());
 			prstate.setString(9, contato.getTelefone3());
 			prstate.setString(10, contato.getObservacao());
+			prstate.setInt(11, contato.getCliente());
 			
 			prstate.execute();
 			
@@ -43,7 +44,7 @@ public class AgendaDAO {
 	}
 	
 	public List<Contato> buscarPorNome(String nome){
-		String sql = "SELECT * FROM contato WHERE NOME LIKE UPPER(?) OR APELIDO LIKE UPPER(?) OR OFICINA LIKE UPPER(?) ORDER BY NOME";
+		String sql = "SELECT * FROM contato WHERE NOME LIKE UPPER(?) OR APELIDO LIKE UPPER(?) OR EMPRESA LIKE UPPER(?) ORDER BY NOME";
 		
 		List<Contato> contatos = new ArrayList<Contato>();
 		
@@ -60,7 +61,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
-				contato.setOficina(resultado.getString("OFICINA"));
+				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
 				contato.setCidade(resultado.getString("CIDADE"));
@@ -68,6 +69,7 @@ public class AgendaDAO {
 				contato.setTelefone2(resultado.getString("TELEFONE2"));
 				contato.setTelefone3(resultado.getString("TELEFONE3"));
 				contato.setObservacao(resultado.getString("OBSERVACAO"));
+				contato.setCliente(resultado.getInt("CLIENTE"));
 				
 				contatos.add(contato);
 			}
@@ -98,7 +100,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
-				contato.setOficina(resultado.getString("OFICINA"));
+				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
 				contato.setCidade(resultado.getString("CIDADE"));
@@ -106,6 +108,7 @@ public class AgendaDAO {
 				contato.setTelefone2(resultado.getString("TELEFONE2"));
 				contato.setTelefone3(resultado.getString("TELEFONE3"));
 				contato.setObservacao(resultado.getString("OBSERVACAO"));
+				contato.setCliente(resultado.getInt("CLIENTE"));
 				
 				contatos.add(contato);
 			}
@@ -156,7 +159,7 @@ public class AgendaDAO {
 			contato.setId(resultado.getInt("ID"));
 			contato.setNome(resultado.getString("NOME"));
 			contato.setApelido(resultado.getString("APELIDO"));
-			contato.setOficina(resultado.getString("OFICINA"));
+			contato.setEmpresa(resultado.getString("EMPRESA"));
 			contato.setEndereco(resultado.getString("ENDERECO"));
 			contato.setBairro(resultado.getString("BAIRRO"));
 			contato.setCidade(resultado.getString("CIDADE"));
@@ -164,6 +167,7 @@ public class AgendaDAO {
 			contato.setTelefone2(resultado.getString("TELEFONE2"));
 			contato.setTelefone3(resultado.getString("TELEFONE3"));
 			contato.setObservacao(resultado.getString("OBSERVACAO"));
+			contato.setCliente(resultado.getInt("CLIENTE"));
 				
 			resultado.close();
 			prstate.close();
@@ -176,14 +180,14 @@ public class AgendaDAO {
 	}
 	
 	public void alterar(Contato contato) {
-		String sql = "UPDATE contato SET NOME=?, APELIDO=?, OFICINA=?, ENDERECO=?, BAIRRO=?, CIDADE=?, TELEFONE1=?, TELEFONE2=?, TELEFONE3=?, OBSERVACAO=? WHERE ID=?";
+		String sql = "UPDATE contato SET NOME=?, APELIDO=?, EMPRESA=?, ENDERECO=?, BAIRRO=?, CIDADE=?, TELEFONE1=?, TELEFONE2=?, TELEFONE3=?, OBSERVACAO=?, CLIENTE=? WHERE ID=?";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			
 			prstate.setString(1, contato.getNome());
 			prstate.setString(2, contato.getApelido());
-			prstate.setString(3, contato.getOficina());
+			prstate.setString(3, contato.getEmpresa());
 			prstate.setString(4, contato.getEndereco());
 			prstate.setString(5, contato.getBairro());
 			prstate.setString(6, contato.getCidade());
@@ -191,7 +195,9 @@ public class AgendaDAO {
 			prstate.setString(8, contato.getTelefone2());
 			prstate.setString(9, contato.getTelefone3());
 			prstate.setString(10, contato.getObservacao());
-			prstate.setInt(11, contato.getId());
+			prstate.setInt(11, contato.getCliente());
+			prstate.setInt(12, contato.getId());
+			
 			
 			prstate.execute();
 			prstate.close();
