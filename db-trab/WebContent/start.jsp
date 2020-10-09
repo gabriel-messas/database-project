@@ -135,7 +135,17 @@
 						<button type="submit" class="btn"><span>LISTA DE VENDAS</span></button>
 					</form>
 				</td>
-			</tr>			
+			</tr>
+			
+			<tr><td><br></td></tr>
+	
+			<tr>
+				<td>
+					<form action="buscarFuncionarios">
+						<button type="submit" class="btn"><span>GERENCIAR FUNCIONÁRIOS</span></button>
+					</form>
+				</td>
+			</tr>
 		</table>
 		
 	</div>

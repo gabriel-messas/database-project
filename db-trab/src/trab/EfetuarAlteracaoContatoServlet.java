@@ -38,7 +38,7 @@ public class EfetuarAlteracaoContatoServlet extends HttpServlet {
 		contato.setTelefone2(request.getParameter("telefone2"));
 		contato.setTelefone3(request.getParameter("telefone3"));
 		contato.setObservacao(request.getParameter("observacao"));
-		System.out.println(request.getParameter("cliente"));
+		//System.out.println(request.getParameter("cliente"));
 		
 		Contato contato2 = new Contato();
 		contato2 = agdao.buscarPorId(contato.getId());

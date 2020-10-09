@@ -166,7 +166,7 @@ public class VendaDAO {
 				venda.setCliente(cliente);
 				venda.setValorVenda(venda.getValorVenda()+(produto.getPrecoVenda()*produto.getQuantidade()));
 				
-				System.out.println(produto);
+				//System.out.println(produto);
 				
 				produtos.add(produto);
 				
