@@ -5,33 +5,35 @@ import java.util.LinkedList;
 
 @SuppressWarnings("serial")
 public class Venda implements Serializable{
+	public static int index = 0;
+	
 	private int id;
-	private LinkedList<Produto> produtos;
-	private Contato cliente;
+	private String data;
+	private int quantidade;
 	private double valorVenda;
 	
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public LinkedList<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(LinkedList<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public Contato getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Contato cliente) {
-		this.cliente = cliente;
 	}
 
 	public double getValorVenda() {

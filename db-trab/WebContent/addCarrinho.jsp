@@ -14,6 +14,7 @@
 		Nome: <input type="text" name="nome" value="${param.pnome}"/> <br />
 		Quantidade: <input type="number" name="quantidade" value="${param.pquantidade}" max="${param.pquantidade}"/> <br />
 		Preço Unitário: <input type="number" name="preco" value="${param.ppreco}" readonly/> <br />
+		<input type="hidden" name=id value="${param.pid}"/> <br />
 		<input type="submit" value="Adicionar" />
 	</form>
 	

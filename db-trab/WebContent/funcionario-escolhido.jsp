@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Funcionário Escolhido</title>
 </head>
 <body>
-<jsp:useBean id="contato" class="trab.AdicionarContatoServlet"/>
-O contato ${contato.contato.nome} foi adicionado com sucesso!
+<jsp:useBean id="funcionario" class="trab.SelecionarFuncionarioServlet"/>
 
-	<form action="start.jsp">
+O funcionário ${funcionario.funcionario.nome} foi selecionado com sucesso!
+	
+	<form action="finalizarVenda">
 		<br/>
-		<input type="submit" value="Voltar ao Menu" />
+		<input type="submit" value="Finalizar Venda" />
 	</form>
 </body>
 </html>

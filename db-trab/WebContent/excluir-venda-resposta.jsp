@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Venda Excluída</title>
 </head>
 <body>
-<jsp:useBean id="contato" class="trab.AdicionarContatoServlet"/>
-O contato ${contato.contato.nome} foi adicionado com sucesso!
-
-	<form action="start.jsp">
+	
+	A venda de ID <c:out value="${sessionScope.lastVendaRemoved.id}" /> foi excluída com sucesso!
+	
+	<form action="buscarVendas">
 		<br/>
-		<input type="submit" value="Voltar ao Menu" />
+		<input type="submit" value="Voltar às Vendas" />
 	</form>
 </body>
 </html>

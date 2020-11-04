@@ -10,6 +10,15 @@ public class Produto implements Serializable{
 	private String precoCompra1;
 	private String precoCompra2;
 	private int quantidade;
+	private Contato fornecedor;
+	
+	public Contato getFornecedor() {
+		return fornecedor;
+	}
+	
+	public void setFornecedor(Contato fornecedor) {
+		this.fornecedor = fornecedor;
+	}
 	
 	public int getId() {
 		return id;

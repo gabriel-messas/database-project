@@ -16,7 +16,7 @@ O produto ${produto.produto.nome} foi adicionado ao carrinho com sucesso!
 		<input type="submit" value="Continuar Adicionando" />
 	</form>
 	
-	<form action="agenda">
+	<form action="buscarClientes">
 		<br/>
 		<input type="submit" value="Selecionar Cliente" />
 	</form>

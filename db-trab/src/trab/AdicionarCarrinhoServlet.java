@@ -30,6 +30,8 @@ public class AdicionarCarrinhoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Produto produto = new Produto();
+		produto.setId(Integer.parseInt(request.getParameter("id")));
+		System.out.println("AddCarrinhoServlet " + produto.getId());
 		produto.setNome(request.getParameter("nome"));
 		produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 		produto.setPrecoVenda(Double.parseDouble(request.getParameter("preco")));

@@ -26,98 +26,53 @@ public class VendaDAO {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 	
-	public void inserir(Venda venda) {
-		try{
+	public Venda getLast() {
+		String sql = "SELECT * FROM venda ORDER BY ID DESC LIMIT 1";
 		
-			File file = new File("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties");
-			file.createNewFile();
-			
-			InputStream input = new FileInputStream("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties");
-			
-            Properties prop = new Properties();
-
-            // load a properties file
-            prop.load(input);
-
-            // get the property value and print it out
-            if (prop.getProperty("venda_index") != null){
-            	VendaDAO.index = Integer.parseInt(prop.getProperty("venda_index"));
-            }
-            else {
-            	input.close();
-            	OutputStream output = new FileOutputStream("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties");
-            	
-            	prop = new Properties();
-
-            	// set the properties value
-	            prop.setProperty("venda_index", String.valueOf(index));
-	
-	            // save properties to project root folder
-	            prop.store(output, null);
-	            
-	            output.close();
-            }
-            
-            input.close();
-            
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        }
+		Venda venda = new Venda();
 		
-		
-		for(Produto produto : venda.getProdutos()) {
-			String sql = 
-					"INSERT INTO venda (ID, PRODUTO, QUANTIDADE, PRECO, CLIENTE) VALUES (?,?,?,?,?)";
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
 			
-			try {
-				PreparedStatement prstate = connection.prepareStatement(sql);
-				
-				prstate.setInt(1, index);
-				prstate.setString(2, produto.getNome());
-				prstate.setInt(3, produto.getQuantidade());
-				prstate.setDouble(4, produto.getPrecoVenda());
-				prstate.setString(5, venda.getCliente().getNome());
-				
-				prstate.execute();
-				
-				prstate.close();
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				venda.setId(resultado.getInt("ID"));
+				venda.setData(resultado.getString("DATA"));
+				venda.setQuantidade(resultado.getInt("QUANTIDADE"));
+				venda.setValorVenda(resultado.getDouble("PRECO"));
 			}
-			catch(SQLException e) {
-				throw new RuntimeException(e);
-			}
+			
+			resultado.close();
+			
+			prstate.close();
 		}
-		
-		VendaDAO.index++;
-		
-		
-		try (InputStream input = new FileInputStream("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties")) {
-
-            Properties prop = new Properties();
-
-            // load a properties file
-            prop.load(input);
-            
-            input.close();
-
-            try (OutputStream output = new FileOutputStream("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties")) {
-
-            	// set the properties value
-	            prop.setProperty("venda_index", String.valueOf(index));
-	
-	            // save properties to project root folder
-	            prop.store(output, null);
-	
-	            System.out.println(prop);
-	            
-	            //input.close();
-	            output.close();
-            }
+		catch(SQLException e) {
+			throw new RuntimeException(e);
 		}
-		catch (IOException ex) {
-            ex.printStackTrace();
-        }
+		return venda;
 	}
 	
+	public void inserir(Venda venda) {
+
+		String sql = 
+				"INSERT INTO venda (DATA, QUANTIDADE, PRECO) VALUES (?,?,?)";
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			
+			prstate.setString(1, venda.getData());
+			prstate.setInt(2, venda.getQuantidade());
+			prstate.setDouble(3, venda.getValorVenda());
+			
+			prstate.execute();
+			
+			prstate.close();
+		}
+		catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 	
 	public void remove(int id) {
 		String sql = "DELETE FROM venda WHERE ID=?";
@@ -145,10 +100,7 @@ public class VendaDAO {
 		String sql = "SELECT * FROM venda WHERE ID = ?";
 		
 		Venda venda = new Venda();
-		Produto produto;
-		Contato cliente = new Contato();
-		venda.setValorVenda(0);
-		LinkedList<Produto> produtos = new LinkedList<Produto>();
+		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
 			prstate.setLong(1, id);
@@ -156,22 +108,11 @@ public class VendaDAO {
 			ResultSet resultado = prstate.executeQuery();
 			
 			while(resultado.next()) {
-				produto = new Produto();
 				venda.setId(resultado.getInt("ID"));
-				
-				produto.setNome(resultado.getString("PRODUTO"));
-				produto.setQuantidade(resultado.getInt("QUANTIDADE"));
-				produto.setPrecoVenda(resultado.getDouble("PRECO"));
-				cliente.setNome(resultado.getString("CLIENTE"));
-				venda.setCliente(cliente);
-				venda.setValorVenda(venda.getValorVenda()+(produto.getPrecoVenda()*produto.getQuantidade()));
-				
-				//System.out.println(produto);
-				
-				produtos.add(produto);
-				
+				venda.setData(resultado.getString("DATA"));
+				venda.setQuantidade(resultado.getInt("QUANTIDADE"));
+				venda.setValorVenda(resultado.getDouble("PRECO"));
 			}
-			venda.setProdutos(produtos);
 			
 			resultado.close();
 			prstate.close();
@@ -180,6 +121,11 @@ public class VendaDAO {
 			e.printStackTrace();
 		}
 		
+		System.out.println("VENDA DAO ID = " + venda.getId());
+		if(!(venda.getId() >= 1)) {
+			
+			return null;
+		}
 		return venda;
 	}
 	

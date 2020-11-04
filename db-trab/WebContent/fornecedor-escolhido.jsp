@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Fornecedor Escolhido</title>
 </head>
 <body>
-<jsp:useBean id="contato" class="trab.AdicionarContatoServlet"/>
-O contato ${contato.contato.nome} foi adicionado com sucesso!
+<jsp:useBean id="fornecedor" class="trab.SelecionarFornecedorServlet"/>
 
-	<form action="start.jsp">
+O fornecedor ${fornecedor.fornecedor.nome} foi selecionado com sucesso!
+	
+	<form action="adicionar-produto.jsp">
 		<br/>
-		<input type="submit" value="Voltar ao Menu" />
+		<input type="submit" value="Adicionar/Receber Produtos deste Fornecedor" />
 	</form>
 </body>
 </html>

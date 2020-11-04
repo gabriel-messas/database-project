@@ -14,7 +14,7 @@ Não há produtos no carrinho. Você deve adicioná-los na seção de Busca.
 	<form action="buscar-produto.jsp">
 		<br/>
 		<input type="submit" value="Adicionar Produtos" />
-	</form>´
+	</form>
 
 </body>
 </html>

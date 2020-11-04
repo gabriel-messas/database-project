@@ -39,8 +39,12 @@ public class BuscarProdutoServlet extends HttpServlet {
 		ProdutoDAO ptdao = new ProdutoDAO(); 
 
 		String nome = request.getParameter("nome");
-		
-		this.listaProdutos = ptdao.buscarPorNome(nome);
+		if(nome == null) {
+			this.listaProdutos = ptdao.buscarPorNome("");
+		}
+		else {
+			this.listaProdutos = ptdao.buscarPorNome(nome);
+		}
 		
 		HttpSession session = request.getSession();
 		request.setAttribute("listaProdutos", listaProdutos);

@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Problema na Inserção de Produto</title>
 </head>
 <body>
-<jsp:useBean id="contato" class="trab.AdicionarContatoServlet"/>
-O contato ${contato.contato.nome} foi adicionado com sucesso!
 
-	<form action="start.jsp">
+Não há fornecedor selecionado do qual receber produtos. Você deve escolhê-lo na seção de Contatos.
+
+	<form action="agenda.jsp">
 		<br/>
-		<input type="submit" value="Voltar ao Menu" />
-	</form>
+		<input type="submit" value="Selecionar Fornecedor" />
+	</form>´
+
 </body>
 </html>

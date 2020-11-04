@@ -66,7 +66,7 @@
 						<a href="/db-trab/excluir?id=${produto.getId()}">Excluir</a>
 					</td>
 					<td>
-						<a href="/db-trab/addCarrinho.jsp?pnome=${produto.getNome()}&pquantidade=${produto.getQuantidade()}&ppreco=${produto.getPrecoVenda()}">Adicionar para Venda</a>
+						<a href="/db-trab/addCarrinho.jsp?pid=${produto.getId()}&pnome=${produto.getNome()}&pquantidade=${produto.getQuantidade()}&ppreco=${produto.getPrecoVenda()}">Adicionar para Venda</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -75,11 +75,22 @@
 	  font-size: 25px; 
 	}
 	
+	.column {
+	  float: left;
+	  width: 50%;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
 </style>
 </head>
 
 <body>
-	<div align="center">
+	<div class="row" align="center">
 		
 		<img style="width:30%;height:30%;" src="Loja.png">
 		</br><br>
@@ -88,65 +99,89 @@
 		<span style="color: white; background-color: black; font-size: 60px; height: 50px;"> MENU </span>
 		<hr width=225, align="center">
 		
-		<table>
-			<tr>
-				<th>
-					<form action="adicionar-produto.jsp">
-						<button type="submit" class="btn"><span>ADICIONAR PRODUTO</span></button>
-					</form>
-				</th>
-			</tr>
-	
-			<tr><td><br></td></tr>
-	
-			<tr>
-				<td>
-					<form action="buscar-produto.jsp">
-						<button type="submit" class="btn"><span>BUSCAR PRODUTO</span></button>
-					</form>
-				</td>
-			</tr>
+		<div class="column">
+			<table>
+				<tr>
+					<th>
+						<form action="adicionar-produto.jsp">
+							<button type="submit" class="btn"><span>ADICIONAR PRODUTO</span></button>
+						</form>
+					</th>
+				</tr>
+		
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="buscar-produto.jsp">
+							<button type="submit" class="btn"><span>BUSCAR PRODUTO</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="checar">
+							<button type="submit" class="btn"><span>CHECAR ESTOQUE MÍNIMO</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="buscarClientes">
+							<button type="submit" class="btn"><span>CLIENTES</span></button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
 			
-			<tr><td><br></td></tr>
-	
-			<tr>
-				<td>
-					<form action="checar">
-						<button type="submit" class="btn"><span>CHECAR ESTOQUE MÍNIMO</span></button>
-					</form>
-				</td>
-			</tr>
-			
-			<tr><td><br></td></tr>
-	
-			<tr>
-				<td>
-					<form action="agenda">
-						<button type="submit" class="btn"><span>AGENDA DE CONTATOS</span></button>
-					</form>
-				</td>
-			</tr>
-			
-			<tr><td><br></td></tr>
-	
-			<tr>
-				<td>
-					<form action="buscarVendas">
-						<button type="submit" class="btn"><span>LISTA DE VENDAS</span></button>
-					</form>
-				</td>
-			</tr>
-			
-			<tr><td><br></td></tr>
-	
-			<tr>
-				<td>
-					<form action="buscarFuncionarios">
-						<button type="submit" class="btn"><span>GERENCIAR FUNCIONÁRIOS</span></button>
-					</form>
-				</td>
-			</tr>
-		</table>
+		<div class="column">
+			<table>
+				<tr>
+					<td>
+						<form action="buscarFornecedores">
+							<button type="submit" class="btn"><span>FORNECEDORES</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+				
+				<tr>
+					<td>
+						<form action="buscarVendas">
+							<button type="submit" class="btn"><span>LISTA DE VENDAS</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="buscarFuncionarios">
+							<button type="submit" class="btn"><span>GERENCIAR FUNCIONÁRIOS</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="finalizarVenda">
+							<button type="submit" class="btn"><span>FINALIZAR VENDA</span></button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
 		
 	</div>
 	

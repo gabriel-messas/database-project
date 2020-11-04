@@ -95,6 +95,9 @@
 					<td>
 						<a href="/db-trab/excluirFuncionario?id=${funcionario.getId()}">Demitir</a>
 					</td>
+					<td>
+						<a href="/db-trab/selecionarFuncionario?id=${funcionario.getId()}">Selecionar como Vendedor</a>
+					</td>
 				</tr>
 			</c:forEach>		
 		</table>

@@ -12,26 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/buscarContato")
-public class BuscarContatoServlet extends HttpServlet {
+@WebServlet("/buscarFornecedoresEndereco")
+public class BuscarFornecedorEnderecoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public BuscarContatoServlet() {
+    public BuscarFornecedorEnderecoServlet() {
         super();
     }
     
-    public List<Contato> listaContatos; 
+    public List<Contato> listaFornecedores; 
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AgendaDAO agdao = new AgendaDAO(); 
 
 		String nome = request.getParameter("nome");
 		
-		this.listaContatos = agdao.buscarPorNome(nome);
+		this.listaFornecedores = agdao.buscarFornecedoresPorEndereco(nome);
 		
-		request.setAttribute("listaContatos", listaContatos);
+		request.setAttribute("listaFornecedores", listaFornecedores);
 		
-		RequestDispatcher view = request.getRequestDispatcher("agenda.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("fornecedores.jsp");
 		
 		view.forward(request, response);
 	}

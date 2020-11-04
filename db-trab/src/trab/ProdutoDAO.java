@@ -17,7 +17,7 @@ public class ProdutoDAO {
 	
 	public void inserir(Produto produto) {
 		String sql = 
-				"INSERT INTO produto (NOME, PRECOVENDA, QUANTIDADE, PRECOCOMPRA1, PRECOCOMPRA2) VALUES (?,?,?,?,?)";
+				"INSERT INTO produto (NOME, PRECOVENDA, QUANTIDADE, PRECOCOMPRA1, PRECOCOMPRA2, ID_CONTATO) VALUES (?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
@@ -27,6 +27,7 @@ public class ProdutoDAO {
 			prstate.setInt(3, produto.getQuantidade());
 			prstate.setString(4, produto.getPrecoCompra1());
 			prstate.setString(5, produto.getPrecoCompra2());
+			prstate.setInt(6, produto.getFornecedor().getId());
 			
 			prstate.execute();
 			
@@ -56,6 +57,12 @@ public class ProdutoDAO {
 				produto.setQuantidade(resultado.getInt("QUANTIDADE"));
 				produto.setPrecoCompra1(resultado.getString("PRECOCOMPRA1"));
 				produto.setPrecoCompra2(resultado.getString("PRECOCOMPRA2"));
+				int id_contato_temp = resultado.getInt("ID_CONTATO");
+				
+				AgendaDAO agdao = new AgendaDAO();
+				Contato fornecedor = new Contato();
+				fornecedor = agdao.buscarPorId(id_contato_temp);
+				produto.setFornecedor(fornecedor);
 				
 				produtos.add(produto);
 			}

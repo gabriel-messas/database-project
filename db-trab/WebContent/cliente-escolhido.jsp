@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Produto Adicionado</title>
+<title>Cliente Escolhido</title>
 </head>
 <body>
 <jsp:useBean id="cliente" class="trab.SelecionarClienteServlet"/>
@@ -15,6 +15,11 @@ O cliente ${cliente.cliente.nome} foi selecionado com sucesso!
 	<form action="finalizarVenda">
 		<br/>
 		<input type="submit" value="Finalizar Venda" />
+	</form>
+	
+	<form action="buscarFuncionarios">
+		<br/>
+		<input type="submit" value="Selecionar Funcionario" />
 	</form>
 	
 	<form action="buscar-produto.jsp">

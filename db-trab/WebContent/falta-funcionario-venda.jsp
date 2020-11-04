@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Problema na Venda</title>
 </head>
 <body>
-<jsp:useBean id="contato" class="trab.AdicionarContatoServlet"/>
-O contato ${contato.contato.nome} foi adicionado com sucesso!
 
-	<form action="start.jsp">
+Não há funcionário escolhido para gerenciar a venda. Você deve adicioná-lo na seção de Funcionários.
+
+	<form action="buscarFuncionarios">
 		<br/>
-		<input type="submit" value="Voltar ao Menu" />
+		<input type="submit" value="Listar Funcionários" />
 	</form>
+
 </body>
 </html>

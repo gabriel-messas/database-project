@@ -29,7 +29,7 @@
 
 	<form action="adicionar-contato.jsp">
 		<br/>
-		<input type="submit" value="Adicionar Contato" />
+		<input type="submit" value="Adicionar Fornecedor" />
 		<br/>
 		<br/>
 	</form>
@@ -38,25 +38,25 @@
 	
 	<div class="row">
 		<div class="column border-right">
-			<form action="buscarContato">
-				Digite o nome, apelido ou empresa do contato:
+			<form action="buscarFornecedores">
+				Digite o nome, apelido ou empresa do fornecedor:
 				<input type="text" name="nome"/>
 				<br/><br/>
 				<input type="submit" value="Buscar"/>
 				<br/><br/>
-				Dica: Busque sem digitar nada para obter a agenda completa de contatos
+				Dica: Busque sem digitar nada para obter a agenda completa de fornecedores
 			</form>
 			
 		</div>
 		
 		<div class="column" style="padding-left: 15px;">
-			<form action="buscarContatoEndereco">
-				Digite o endereço ou bairro do contato:
+			<form action="buscarFornecedoresEndereco">
+				Digite o endereço ou bairro do fornecedor:
 				<input type="text" name="nome"/>
 				<br/><br/>
 				<input type="submit" value="Buscar"/>
 				<br/><br/>
-				Dica: Busque sem digitar nada para obter a agenda completa de contatos
+				Dica: Busque sem digitar nada para obter a agenda completa de fornecedores
 			</form>
 		</div>
 	</div>
@@ -71,9 +71,9 @@
 	
 	<hr>
 	
-	<c:if test="${not empty requestScope.listaContatos}">
+	<c:if test="${not empty requestScope.listaFornecedores}">
 	<br/>
-		Contatos:
+		Fornecedores:
 		<br/><br/>
 		<table>
 			<tr>
@@ -89,7 +89,7 @@
 				<th> Telefone 3 </th>
 				<th> Observação </th>
 			</tr>
-			<c:forEach var="contato" items="${requestScope.listaContatos}">
+			<c:forEach var="contato" items="${requestScope.listaFornecedores}">
 				<tr>
 					<td>
 			        	<c:if test="${contato.cliente==1}">
@@ -139,6 +139,9 @@
 						<c:if test="${contato.cliente==1}">
 							<a href="/db-trab/selecionarCliente?id=${contato.getId()}">Selecionar como Cliente</a>
 						</c:if>
+						<c:if test="${contato.cliente==0}">
+							<a href="/db-trab/selecionarFornecedor?id=${contato.getId()}">Selecionar como Fornecedor</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>		
@@ -147,8 +150,8 @@
 	
 	<br/>
 	
-	<c:if test="${empty requestScope.listaContatos}">
-		Nenhum contato foi encontrado!
+	<c:if test="${empty requestScope.listaFornecedores}">
+		Nenhum fornecedor foi encontrado!
 	</c:if>
 	
 </body>

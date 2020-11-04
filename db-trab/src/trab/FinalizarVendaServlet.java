@@ -33,28 +33,87 @@ public class FinalizarVendaServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Object listaCarrinhoObj = session.getAttribute("listaCarrinho");
 		Object clienteVendaObj = session.getAttribute("clienteVenda");
+		Object funcionarioVendaObj = session.getAttribute("funcionarioVenda");
 		if(listaCarrinhoObj == null) {
 			RequestDispatcher view = request.getRequestDispatcher("falta-produto-venda.jsp");
 			view.forward(request, response);
+			return;
 		}
 		else if(clienteVendaObj == null){
 			RequestDispatcher view = request.getRequestDispatcher("falta-cliente-venda.jsp");
 			view.forward(request, response);
+			return;
+		}
+		else if(funcionarioVendaObj == null){
+			RequestDispatcher view = request.getRequestDispatcher("falta-funcionario-venda.jsp");
+			view.forward(request, response);
+			return;
 		}
 		else {
 			LinkedList<Produto> listaCarrinho = (LinkedList<Produto>)listaCarrinhoObj;
 			Contato cliente = (Contato)clienteVendaObj;
+			Funcionario funcionario = (Funcionario)funcionarioVendaObj;
 			
-			double valorVenda = 0;
+			int quantidade = 0;
+			double preco = 0;
+			
 			for(Produto p : listaCarrinho) {
-				valorVenda += p.getPrecoVenda();
+				quantidade += p.getQuantidade();
+				preco += (p.getPrecoVenda()*p.getQuantidade());
 			}
 			
-			venda.setProdutos(listaCarrinho);
-			venda.setCliente(cliente);
-			venda.setValorVenda(valorVenda);
+			venda.setData(String.valueOf(java.time.LocalDate.now()));
+			venda.setQuantidade(quantidade);
+			venda.setValorVenda(preco);
 			
 			vndao.inserir(venda);
+			
+			Object listaVendasObj = session.getAttribute("listaVendas");
+			if(listaVendasObj == null) {
+				LinkedList<Venda> listaVendas = new LinkedList<Venda>();
+				for(Venda v : listaVendas) {
+					listaVendas.add(v);
+				}
+				session.setAttribute("listaVendas", listaVendas);
+			}
+			else {
+				LinkedList<Venda> listaVendas = (LinkedList<Venda>)listaVendasObj;
+				for(Venda v : listaVendas) {
+					if(!listaVendas.contains(v)) {
+						listaVendas.add(v);
+					}
+				}
+				session.setAttribute("listaVendas", listaVendas);
+			}
+			
+			venda = vndao.getLast();
+			//
+			for(Produto p : listaCarrinho) {
+				ProdVenda pv = new ProdVenda();
+				pv.setId_produto(p.getId());
+				System.out.println("Produto " + p.getId());
+				pv.setId_venda(venda.getId());
+				System.out.println("Venda " + pv.getId_venda());
+				pv.setQuantidade(p.getQuantidade());
+				pv.setPreco(p.getPrecoVenda());
+				ProdVendaDAO pvdao = new ProdVendaDAO();
+				pvdao.inserir(pv);
+			}
+			//
+			FuncVenda fv = new FuncVenda();
+			fv.setId_funcionario(funcionario.getId());
+			fv.setId_venda(venda.getId());
+			
+			FuncVendaDAO fvdao = new FuncVendaDAO();
+			fvdao.inserir(fv);
+			//
+			ContVenda cv = new ContVenda();
+			cv.setId_contato(cliente.getId());
+			cv.setId_venda(venda.getId());
+			
+			ContVendaDAO cvdao = new ContVendaDAO();
+			cvdao.inserir(cv);
+			//
 		}
 		
 		this.venda = venda;

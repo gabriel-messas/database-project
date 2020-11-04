@@ -29,32 +29,45 @@ public class BuscarVendaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VendaDAO vddao = new VendaDAO();
 		LinkedList<Venda> listaVendas = new LinkedList<Venda>();
+		Venda venda = new Venda();
+		venda = vddao.getLast();
+		System.out.println("Last ID " + venda.getId());
 		
-		int index = 0;
-		
-		File file = new File("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties");
-		file.createNewFile();
-		
-		InputStream input = new FileInputStream("C:\\Users\\Gabriel\\Dropbox\\Banco de Dados\\trab-db\\db-trab\\config.properties");
-		
-        Properties prop = new Properties();
-
-        // load a properties file
-        prop.load(input);
-
-        // get the property value and print it out
-        if (prop.getProperty("venda_index") != null){
-        	index = Integer.parseInt(prop.getProperty("venda_index"));
-        	for(int g = 0; g < index; g++) {
-        		listaVendas.add(vddao.buscarPorId(g));
-        	}
-        }
-        
-        request.setAttribute("listaVendas", listaVendas);
+    	for(int g = 0; g <= venda.getId(); g++) {
+    		if(vddao.buscarPorId(g) != null) {
+    			System.out.println("Adicionando venda à lista ID " + g);
+    			listaVendas.add(vddao.buscarPorId(g));
+    			
+    		}
+    	}
+    
+    	HttpSession session = request.getSession();
+        session.setAttribute("listaVendas", listaVendas);
 		
 		RequestDispatcher view = request.getRequestDispatcher("vendas.jsp");
 		
 		view.forward(request, response);
+	}
+	
+	public List<Produto> getProdutos(Venda venda) {
+		
+		ProdVendaDAO pvdao = new ProdVendaDAO();
+		
+		return pvdao.buscarPorIdTodosProdutos(venda.getId());
+	}
+	
+	public Contato getCliente(Venda venda) {
+		
+		ContVendaDAO cvdao = new ContVendaDAO();
+		
+		return cvdao.buscarPorIdCliente(venda.getId());
+	}
+	
+	public Funcionario getFuncionario(Venda venda) {
+		
+		FuncVendaDAO fvdao = new FuncVendaDAO();
+		
+		return fvdao.buscarPorIdFuncionario(venda.getId());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response, List<Produto> c) throws ServletException, IOException {

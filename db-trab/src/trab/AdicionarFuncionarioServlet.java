@@ -27,8 +27,15 @@ public class AdicionarFuncionarioServlet extends HttpServlet {
 		Funcionario funcionario = new Funcionario();
 		
 		funcionario.setNome(request.getParameter("nome"));
-		funcionario.setIdade(Integer.parseInt(request.getParameter("idade")));
-		funcionario.setSalario(Double.parseDouble(request.getParameter("salario")));
+		try {
+			funcionario.setIdade(Integer.parseInt(request.getParameter("idade")));
+			funcionario.setSalario(Double.parseDouble(request.getParameter("salario")));
+		}
+		catch(NumberFormatException nfe) {
+			funcionario.setIdade(0);
+			funcionario.setSalario(0);
+		}
+		
 		funcionario.setHoraInicio(request.getParameter("horaInicio"));
 		funcionario.setHoraFim(request.getParameter("horaFim"));
 		

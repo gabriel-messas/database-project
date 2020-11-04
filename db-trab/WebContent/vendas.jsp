@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Agenda</title>
+<title>Vendas</title>
 <style>
 	table, th, td { border: 1px solid black; }
 	.column {
@@ -35,37 +35,47 @@
 	
 	<hr>
 	
-	<c:if test="${not empty requestScope.listaVendas}">
+	<c:if test="${not empty sessionScope.listaVendas}">
 	<br/>
 		Vendas:
 		<br/><br/>
 		<table>
 			<tr>
 				<th> ID </th>
-				<th> Cliente </th>
-				<th> Produtos </th>
+				<th> Data </th>
+				<th> Quantidade </th>
 				<th> Valor da Venda </th>
-				
+				<th> Cliente </th>
+				<th> Funcionário </th>
 			</tr>
-			<c:forEach var="venda" items="${requestScope.listaVendas}">
+			<c:forEach var="venda" items="${sessionScope.listaVendas}">
+				<jsp:useBean id="classVenda" class="trab.BuscarVendaServlet"/>
 				<tr>
 			        <td>
 			        	${venda.id}
 			        </td>
 			        <td>
-			        	${venda.cliente.nome}
+			        	${venda.data}
 			        </td>
 			        <td>
-			        	<c:forEach var="produto" items="${venda.produtos}">
-			        		${produto.nome} (Quantidade: ${produto.quantidade} / Preço: ${produto.precoVenda})<br/>
-			        	</c:forEach>
+			        	${venda.quantidade}
 			        </td>
 			        <td>
 			        	${venda.valorVenda}
 			        </td>
-			       
+			        <td>
+			        	${classVenda.getCliente(venda).nome}
+			        </td>
+			        <td>
+			        	${classVenda.getFuncionario(venda).nome}
+			        </td>
+			        <td>
+			       	<c:forEach var="produto" items="${classVenda.getProdutos(venda)}">
+			       		${produto.nome} (${produto.quantidade})<br/>
+			       	</c:forEach>
+			       	</td>
 					<td>
-						<a href="/db-trab/excluirVenda?id=${contato.getId()}">Excluir</a>
+						<a href="/db-trab/excluirVenda?id=${venda.getId()}">Excluir</a>
 					</td>
 				</tr>
 			</c:forEach>		
@@ -74,7 +84,7 @@
 	
 	<br/>
 	
-	<c:if test="${empty requestScope.listaVendas}">
+	<c:if test="${empty sessionScope.listaVendas}">
 		Nenhuma venda foi encontrada!
 	</c:if>
 	
