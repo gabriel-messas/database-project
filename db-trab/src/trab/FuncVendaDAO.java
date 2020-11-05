@@ -157,6 +157,7 @@ public class FuncVendaDAO {
 	
 	public void alterar(FuncVenda fv) {
 		this.remove(fv.getId_funcionario(), fv.getId_venda());
-		this.inserir(fv);
+		FuncVendaDAO fvdao = new FuncVendaDAO();
+		fvdao.inserir(fv);
 	}
 }

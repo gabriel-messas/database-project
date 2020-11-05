@@ -31,11 +31,9 @@ public class BuscarVendaServlet extends HttpServlet {
 		LinkedList<Venda> listaVendas = new LinkedList<Venda>();
 		Venda venda = new Venda();
 		venda = vddao.getLast();
-		System.out.println("Last ID " + venda.getId());
 		
     	for(int g = 0; g <= venda.getId(); g++) {
     		if(vddao.buscarPorId(g) != null) {
-    			System.out.println("Adicionando venda à lista ID " + g);
     			listaVendas.add(vddao.buscarPorId(g));
     			
     		}

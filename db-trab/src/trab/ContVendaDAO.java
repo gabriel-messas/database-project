@@ -154,6 +154,7 @@ public class ContVendaDAO {
 	
 	public void alterar(ContVenda cv) {
 		this.remove(cv.getId_contato(), cv.getId_venda());
-		this.inserir(cv);
+		ContVendaDAO cvdao = new ContVendaDAO();
+		cvdao.inserir(cv);
 	}
 }

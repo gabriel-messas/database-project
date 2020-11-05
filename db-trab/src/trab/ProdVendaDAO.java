@@ -167,6 +167,7 @@ public class ProdVendaDAO {
 	
 	public void alterar(ProdVenda pv) {
 		this.remove(pv.getId_produto(), pv.getId_venda());
-		this.inserir(pv);
+		ProdVendaDAO pvdao = new ProdVendaDAO();
+		pvdao.inserir(pv);
 	}
 }

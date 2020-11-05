@@ -138,6 +138,16 @@
 						</form>
 					</td>
 				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="buscarEntregas">
+							<button type="submit" class="btn"><span>LISTA DE ENTREGAS</span></button>
+						</form>
+					</td>
+				</tr>
 			</table>
 		</div>
 			
@@ -177,6 +187,16 @@
 					<td>
 						<form action="finalizarVenda">
 							<button type="submit" class="btn"><span>FINALIZAR VENDA</span></button>
+						</form>
+					</td>
+				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="entregasAvaliar.jsp">
+							<button type="submit" class="btn"><span>AVALIAR VENDA</span></button>
 						</form>
 					</td>
 				</tr>

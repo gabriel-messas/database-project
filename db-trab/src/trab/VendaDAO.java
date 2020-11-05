@@ -121,7 +121,6 @@ public class VendaDAO {
 			e.printStackTrace();
 		}
 		
-		System.out.println("VENDA DAO ID = " + venda.getId());
 		if(!(venda.getId() >= 1)) {
 			
 			return null;
@@ -131,6 +130,7 @@ public class VendaDAO {
 	
 	public void alterar(Venda venda) {
 		this.remove(venda.getId());
-		this.inserir(venda);
+		VendaDAO vndao = new VendaDAO();
+		vndao.inserir(venda);
 	}
 }
