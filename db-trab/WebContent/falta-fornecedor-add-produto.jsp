@@ -11,7 +11,7 @@
 
 Não há fornecedor selecionado do qual receber produtos. Você deve escolhê-lo na seção de Contatos.
 
-	<form action="agenda.jsp">
+	<form action="buscarFornecedores">
 		<br/>
 		<input type="submit" value="Selecionar Fornecedor" />
 	</form>´

@@ -44,7 +44,7 @@
 				<br/><br/>
 				<input type="submit" value="Buscar"/>
 				<br/><br/>
-				Dica: Busque sem digitar nada para obter a agenda completa de funcionário
+				Dica: Busque sem digitar nada para obter a agenda completa de funcionários
 			</form>
 			
 		</div>
