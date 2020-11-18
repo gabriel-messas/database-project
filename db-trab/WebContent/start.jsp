@@ -148,6 +148,16 @@
 						</form>
 					</td>
 				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="buscarAvaliacoes">
+							<button type="submit" class="btn"><span>LISTA DE AVALIAÇÕES</span></button>
+						</form>
+					</td>
+				</tr>
 			</table>
 		</div>
 			
@@ -195,7 +205,7 @@
 		
 				<tr>
 					<td>
-						<form action="entregasAvaliar.jsp">
+						<form action="buscarEntregasAvaliar">
 							<button type="submit" class="btn"><span>AVALIAR VENDA</span></button>
 						</form>
 					</td>
