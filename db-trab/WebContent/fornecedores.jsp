@@ -71,7 +71,7 @@
 	
 	<hr>
 	
-	<c:if test="${not empty requestScope.listaFornecedores}">
+	<c:if test="${not empty sessionScope.listaFornecedores}">
 	<br/>
 		Fornecedores:
 		<br/><br/>
@@ -89,7 +89,7 @@
 				<th> Telefone 3 </th>
 				<th> Observação </th>
 			</tr>
-			<c:forEach var="contato" items="${requestScope.listaFornecedores}">
+			<c:forEach var="contato" items="${sessionScope.listaFornecedores}">
 				<tr>
 					<td>
 			        	<c:if test="${contato.cliente==1}">
@@ -150,7 +150,7 @@
 	
 	<br/>
 	
-	<c:if test="${empty requestScope.listaFornecedores}">
+	<c:if test="${empty sessionScope.listaFornecedores}">
 		Nenhum fornecedor foi encontrado!
 	</c:if>
 	

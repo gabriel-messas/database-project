@@ -34,6 +34,7 @@
 		
 	<c:if test="${not empty sessionScope.listaRecentes}">		
 		Lista de produtos recentes:
+		<br/><br/>
 		<table>
 			<tr>
 				<th> Nome </th>

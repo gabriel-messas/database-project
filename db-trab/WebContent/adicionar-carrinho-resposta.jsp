@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato Adicionado</title>
+<title>Produto Adicionado ao Carrinho</title>
 </head>
 <body>
 <jsp:useBean id="produto" class="trab.AdicionarCarrinhoServlet"/>

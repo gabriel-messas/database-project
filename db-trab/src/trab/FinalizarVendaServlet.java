@@ -91,9 +91,9 @@ public class FinalizarVendaServlet extends HttpServlet {
 			for(Produto p : listaCarrinho) {
 				ProdVenda pv = new ProdVenda();
 				pv.setId_produto(p.getId());
-				System.out.println("Produto " + p.getId());
+				//System.out.println("Produto " + p.getId());
 				pv.setId_venda(venda.getId());
-				System.out.println("Venda " + pv.getId_venda());
+				//System.out.println("Venda " + pv.getId_venda());
 				pv.setQuantidade(p.getQuantidade());
 				pv.setPreco(p.getPrecoVenda());
 				ProdVendaDAO pvdao = new ProdVendaDAO();

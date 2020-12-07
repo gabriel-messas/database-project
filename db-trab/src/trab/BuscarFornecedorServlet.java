@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/buscarFornecedores")
 public class BuscarFornecedorServlet extends HttpServlet {
@@ -28,11 +29,18 @@ public class BuscarFornecedorServlet extends HttpServlet {
 		
 		listaFornecedores = agdao.buscarFornecedoresPorNome("");
 		
-		request.setAttribute("listaFornecedores", listaFornecedores);		
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("listaFornecedores");
+		session.setAttribute("listaFornecedores", listaFornecedores);
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("fornecedores.jsp");
 		
 		view.forward(request, response);
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
