@@ -98,6 +98,14 @@ public class FinalizarVendaServlet extends HttpServlet {
 				pv.setPreco(p.getPrecoVenda());
 				ProdVendaDAO pvdao = new ProdVendaDAO();
 				pvdao.inserir(pv);
+				
+				ProdutoDAO ptdao = new ProdutoDAO();
+				Produto hack = new Produto();
+				hack = ptdao.buscarPorId(pv.getId_produto());
+				hack.setQuantidade(hack.getQuantidade() - pv.getQuantidade());
+				
+				ptdao = new ProdutoDAO();
+				ptdao.alterar(hack);
 			}
 			//
 			FuncVenda fv = new FuncVenda();

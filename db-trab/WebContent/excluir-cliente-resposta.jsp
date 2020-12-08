@@ -9,9 +9,9 @@
 </head>
 <body>
 	
-	O contato <c:out value="${requestScope.lastContatoRemoved.nome}" /> foi excluído com sucesso!
+	O cliente <c:out value="${requestScope.lastContatoRemoved.nome}" /> foi excluído com sucesso!
 	
-	<form action="agenda">
+	<form action="clientes.jsp">
 		<br/>
 		<input type="submit" value="Voltar à Agenda" />
 	</form>

@@ -36,8 +36,16 @@ public class ExcluirContatoServlet extends HttpServlet {
 		
 		request.setAttribute("lastContatoRemoved", lastContatoRemoved);
 		
-		RequestDispatcher view = request.getRequestDispatcher("excluir-contato-resposta.jsp");
-		view.forward(request, response);
+		if(lastContatoRemoved.getCliente() == 1) {
+			RequestDispatcher view = request.getRequestDispatcher("excluir-cliente-resposta.jsp");
+			view.forward(request, response);
+		}
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("excluir-fornecedor-resposta.jsp");
+			view.forward(request, response);
+		}
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
