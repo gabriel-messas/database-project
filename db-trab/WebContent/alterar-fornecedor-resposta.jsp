@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Problema na Venda</title>
+<title>Fornecedor alterado</title>
 </head>
 <body>
 
-Não há cliente selecionado para o qual vender. Você deve escolhê-lo na seção de Contatos.
-
-	<form action="clientes.jsp">
+	<jsp:useBean id="contato" class="trab.AlterarContatoServlet"/>
+	O fornecedor ${contato.lastContatoAlterado.nome} foi alterado com sucesso!
+	
+	<form action="fornecedores.jsp">
 		<br/>
-		<input type="submit" value="Selecionar Cliente" />
-	</form>´
-
+		<input type="submit" value="Voltar à Agenda" />
+	</form>
 </body>
 </html>

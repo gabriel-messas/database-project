@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Contato alterado</title>
+<title>Cliente alterado</title>
 </head>
 <body>
 
 	<jsp:useBean id="contato" class="trab.AlterarContatoServlet"/>
-	O contato ${contato.lastContatoAlterado.nome} foi alterado com sucesso!
+	O cliente ${contato.lastContatoAlterado.nome} foi alterado com sucesso!
 	
-	<form action="agenda">
+	<form action="clientes.jsp">
 		<br/>
 		<input type="submit" value="Voltar à Agenda" />
 	</form>

@@ -47,9 +47,16 @@ public class EfetuarAlteracaoContatoServlet extends HttpServlet {
 		
 		agdao.alterar(contato);
 		
-		RequestDispatcher view = request.getRequestDispatcher("alterar-contato-resposta.jsp");
+		if(contato.getCliente() == 1) {
+			RequestDispatcher view = request.getRequestDispatcher("alterar-cliente-resposta.jsp");
+			view.forward(request, response);
+		}
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("alterar-fornecedor-resposta.jsp");
+			view.forward(request, response);
+		}
 		
-		view.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
