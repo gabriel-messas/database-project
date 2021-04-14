@@ -161,4 +161,29 @@ public class AvaliacaoDAO {
 		AvaliacaoDAO avdao = new AvaliacaoDAO();
 		avdao.inserir(av);
 	}
+	
+	public int buscarPorNota(int nota){
+		String sql = "SELECT COUNT(*) FROM avaliacao WHERE nota = ?";
+		
+		int result = 0;
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			prstate.setInt(1, nota);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				result += (resultado.getInt("COUNT(*)"));
+			}
+			
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

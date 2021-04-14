@@ -133,4 +133,35 @@ public class VendaDAO {
 		VendaDAO vndao = new VendaDAO();
 		vndao.inserir(venda);
 	}
+	
+	public int getAmountByMonth(int month) {
+		String sql = new String();
+		if(month < 10) {
+			sql = "SELECT COUNT(*) FROM venda WHERE data LIKE '%-0" + month + "-%'";
+		}
+		else {
+			sql = "SELECT COUNT(*) FROM venda WHERE data LIKE '%-" + month + "-%'";
+		}
+		
+		int result = 0;
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			//prstate.setInt(1, month);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				result = resultado.getInt("COUNT(*)");
+			}
+			
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

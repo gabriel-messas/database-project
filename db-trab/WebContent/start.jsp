@@ -210,6 +210,16 @@
 						</form>
 					</td>
 				</tr>
+				
+				<tr><td><br></td></tr>
+		
+				<tr>
+					<td>
+						<form action="stats.jsp">
+							<button type="submit" class="btn"><span>ESTATÍSTICAS</span></button>
+						</form>
+					</td>
+				</tr>
 			</table>
 		</div>
 		
