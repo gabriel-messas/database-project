@@ -32,6 +32,7 @@
 	<div style="margin: auto; width: 70%; text-align: center;">
 		<div>
 			<canvas id="myChart"></canvas>
+			<p>aaaaaa</p>
 		</div>
 		
 		<form action="start.jsp">
@@ -40,7 +41,12 @@
 			<br/><br/>
 		</form>
 		
-		<form action="stats2.jsp">
+		<form action="stats3.jsp">
+			<input type="submit" value="Anterior" />
+			<br/><br/>
+		</form>
+		
+		<form action="stats5.jsp">
 			<input type="submit" value="Próxima" />
 			<br/><br/>
 		</form>
@@ -50,41 +56,46 @@
 	
 	<br/>
 	
-	<jsp:useBean id="venda" class="trab.VendaDAO"/>
+	<jsp:useBean id="produto" class="trab.ProdVendaDAO"/>
 	
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', (event) => {
-		    const labels = [
-				'January',
-				'February',
-				'March',
-				'April',
-				'May',
-				'June',
-				'July',
-				'August',
-				'September',
-				'October',
-				'November',
-				'December',
-			];
-		    const data = {
+			const labels = ['< 18', '18 a 30', '31 a 50', '> 50'];
+			
+			const data = {
 				labels: labels,
-				datasets: [{
-				  label: 'Quantidade de Vendas por Mês',
-				  backgroundColor: 'rgb(255, 99, 132)',
-				  borderColor: 'rgb(255, 99, 132)',
-				  data: [${venda.getAmountByMonth(01)}, ${venda.getAmountByMonth(02)}, ${venda.getAmountByMonth(03)}, ${venda.getAmountByMonth(04)}, 
-					     ${venda.getAmountByMonth(05)}, ${venda.getAmountByMonth(06)}, ${venda.getAmountByMonth(07)}, ${venda.getAmountByMonth(08)},
-					     ${venda.getAmountByMonth(09)}, ${venda.getAmountByMonth(10)}, ${venda.getAmountByMonth(11)}, ${venda.getAmountByMonth(12)}],
-				}]
+				datasets: [
+					{
+						label: 'Mais Vendido',
+					    data: [${produto.statsMaisVentidoFaixaEtaria(0, 18)}, ${produto.statsMaisVentidoFaixaEtaria(18, 30)}, 
+					    	   ${produto.statsMaisVentidoFaixaEtaria(31, 50)}, ${produto.statsMaisVentidoFaixaEtaria(50, 120)}
+					    ],
+					    backgroundColor: 'rgb(255, 99, 132)',
+					},
+					{
+						label: 'Menos Vendido',
+					    data: [${produto.statsMenosVentidoFaixaEtaria(0, 18)}, ${produto.statsMenosVentidoFaixaEtaria(18, 30)}, 
+					    	   ${produto.statsMenosVentidoFaixaEtaria(31, 50)}, ${produto.statsMenosVentidoFaixaEtaria(50, 120)}
+					    ],
+					    backgroundColor: 'rgb(132, 255, 99)',
+					},
+				]
 			};
-		    var delayed;
-		    const config = {
-				type: 'line',
+			
+			var delayed;
+			const config = {
+				type: 'bar',
 				data,
 				options: { 
 					responsive: true,
+					scales: {
+				      x: {
+				        stacked: true,
+				      },
+				      y: {
+				        stacked: true
+				      }
+				    },
 					animation: {
 					  onComplete: () => {
 					    delayed = true;
@@ -92,7 +103,7 @@
 					  delay: (context) => {
 					    let delay = 0;
 					    if (context.type === 'data' && context.mode === 'default' && !delayed) {
-					      delay = context.dataIndex * 30 + context.datasetIndex * 10;
+					      delay = context.dataIndex * 60 + context.datasetIndex * 20;
 					    }
 					    return delay;
 					  },

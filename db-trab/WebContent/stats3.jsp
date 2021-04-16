@@ -32,60 +32,38 @@
 	<div style="margin: auto; width: 70%; text-align: center;">
 		<div>
 			<canvas id="myChart"></canvas>
+			<p>No eixo Y, o fornecedor mais barato por produto (1, 2 ou 3 (caso o preço de ambos seja igual))</p>
 		</div>
 		
-		<div >
-			<form action="start.jsp">
-				<br/><br/>
-				<input type="submit" value="Retornar ao Menu" />
-				<br/><br/>
-			</form>
-			
-			<form action="stats.jsp">
-				<input type="submit" value="Anterior" />
-				<br/><br/>
-			</form>
-			
-			<form action="stats3.jsp">
-				<input type="submit" value="Próxima" />
-				<br/><br/>
-			</form>
-		</div>
+		<form action="start.jsp">
+			<br/><br/>
+			<input type="submit" value="Retornar ao Menu" />
+			<br/><br/>
+		</form>
+		
+		<form action="stats2.jsp">
+			<input type="submit" value="Anterior" />
+			<br/><br/>
+		</form>
+		
+		<form action="stats4.jsp">
+			<input type="submit" value="Próxima" />
+			<br/><br/>
+		</form>
 	</div>
 	
 	<hr>
 	
 	<br/>
 	
-	<jsp:useBean id="avaliacao" class="trab.AvaliacaoDAO"/>
+	<jsp:useBean id="produto" class="trab.ProdutoDAO"/>
 	
 	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', (event) => {			
-			const labels2 = [
-				'1',
-				'2',
-				'3',
-				'4',
-				'5',
-				'6',
-				'7',
-				'8',
-				'9',
-				'10',
-			];
-		    const data = {
-				labels: labels2,
-				datasets: [{
-				  label: 'Quantidade de Avaliações por Nota',
-				  backgroundColor: 'rgb(255, 99, 132)',
-				  borderColor: 'rgb(255, 99, 132)',
-				  data: [${avaliacao.buscarPorNota(1)}, ${avaliacao.buscarPorNota(2)}, ${avaliacao.buscarPorNota(3)}, ${avaliacao.buscarPorNota(4)}, 
-					     ${avaliacao.buscarPorNota(5)}, ${avaliacao.buscarPorNota(6)}, ${avaliacao.buscarPorNota(7)}, ${avaliacao.buscarPorNota(8)},
-					     ${avaliacao.buscarPorNota(9)}, ${avaliacao.buscarPorNota(10)}],
-				}]
-			};
-		    var delayed;
-		    const config = {
+		document.addEventListener('DOMContentLoaded', (event) => {
+			${produto.statsPrecoFornecedor()}
+			
+			var delayed;
+			const config = {
 				type: 'bar',
 				data,
 				options: { 
@@ -97,7 +75,7 @@
 					  delay: (context) => {
 					    let delay = 0;
 					    if (context.type === 'data' && context.mode === 'default' && !delayed) {
-					      delay = context.dataIndex * 30 + context.datasetIndex * 10;
+					      delay = context.dataIndex * 60 + context.datasetIndex * 20;
 					    }
 					    return delay;
 					  },

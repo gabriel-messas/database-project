@@ -12,7 +12,7 @@
 	<jsp:useBean id="contato" class="trab.AlterarContatoServlet"/>
 	O cliente ${contato.lastContatoAlterado.nome} foi alterado com sucesso!
 	
-	<form action="clientes.jsp">
+	<form action="buscarClientes">
 		<br/>
 		<input type="submit" value="Voltar à Agenda" />
 	</form>

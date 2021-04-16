@@ -80,6 +80,7 @@
 				<th> Tipo </th>
 				<th> Nome </th>
 				<th> Apelido </th>
+				<th> Idade </th>
 				<th> Empresa </th>
 				<th> Endereço </th>
 				<th> Bairro </th>
@@ -104,6 +105,9 @@
 			        </td>
 			        <td>
 			        	${contato.apelido}
+			        </td>
+			        <td>
+			        	${contato.idade}
 			        </td>
 			        <td>
 			        	${contato.empresa}

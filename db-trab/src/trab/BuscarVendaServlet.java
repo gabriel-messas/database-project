@@ -1,12 +1,8 @@
 package trab;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +31,6 @@ public class BuscarVendaServlet extends HttpServlet {
     	for(int g = 0; g <= venda.getId(); g++) {
     		if(vddao.buscarPorId(g) != null) {
     			listaVendas.add(vddao.buscarPorId(g));
-    			
     		}
     	}
     

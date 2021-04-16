@@ -157,4 +157,32 @@ public class ContVendaDAO {
 		ContVendaDAO cvdao = new ContVendaDAO();
 		cvdao.inserir(cv);
 	}
+	
+	public ContVenda buscarPorFaixaEtaria(int idadeMin, int idadeMax){
+		String sql = "SELECT * FROM venda WHERE id IN (SELECT id_venda FROM contato_venda WHERE id_contato IN (SELECT id FROM contato WHERE idade >= ? AND idade <= ?))";
+		
+		ContVenda cv = new ContVenda();
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			prstate.setInt(1, idadeMin);
+			prstate.setInt(2, idadeMax);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				cv.setId_venda(resultado.getInt("ID_VENDA"));
+				
+				
+			}
+			
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return cv;
+	}
 }

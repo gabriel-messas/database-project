@@ -13,9 +13,11 @@
 	    <label for="cliente">Cliente</label><br>
 	    <input type="radio" id="fornecedor" name="cliente" value="0">
 	    <label for="fornecedor">Fornecedor</label><br/><br/>
-		Nome: <input type="text" name="nome"/> <br />
+		Nome: <input type="text" name="nome" required/> <br />
 		<br/>
 		Apelido: <input type="text" name="apelido"/> <br />
+		<br/>
+		Idade: <input type="number" name="idade" required/> <br />
 		<br/>
 		Empresa: <input type="text" name="empresa"/> <br />
 		<br/>

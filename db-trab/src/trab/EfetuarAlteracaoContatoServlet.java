@@ -30,6 +30,7 @@ public class EfetuarAlteracaoContatoServlet extends HttpServlet {
 		contato.setId(Integer.parseInt(request.getParameter("id")));
 		contato.setNome(request.getParameter("nome"));
 		contato.setApelido(request.getParameter("apelido"));
+		contato.setIdade(Integer.parseInt(request.getParameter("idade")));
 		contato.setEmpresa(request.getParameter("empresa"));
 		contato.setEndereco(request.getParameter("endereco"));
 		contato.setBairro(request.getParameter("bairro"));

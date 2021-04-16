@@ -36,6 +36,7 @@ public class AdicionarContatoServlet extends HttpServlet {
 		contato.setTelefone2(request.getParameter("telefone2"));
 		contato.setTelefone3(request.getParameter("telefone3"));
 		contato.setObservacao(request.getParameter("observacao"));
+		contato.setIdade(Integer.parseInt(request.getParameter("idade")));
 		contato.setCliente(Integer.parseInt(request.getParameter("cliente")));
 		
 		AgendaDAO agdao = new AgendaDAO();

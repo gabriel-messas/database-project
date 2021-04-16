@@ -15,6 +15,7 @@ public class Contato implements Serializable{
 	private String telefone2;
 	private String telefone3;
 	private String observacao;
+	private int idade;
 	private int cliente;
 	
 	public int getId() {
@@ -103,6 +104,14 @@ public class Contato implements Serializable{
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 
 	@Override

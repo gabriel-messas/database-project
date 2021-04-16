@@ -170,4 +170,74 @@ public class ProdVendaDAO {
 		ProdVendaDAO pvdao = new ProdVendaDAO();
 		pvdao.inserir(pv);
 	}
+	
+	public int statsMaisVentidoFaixaEtaria(int idadeMin, int idadeMax){
+		String sql = "SELECT p.nome, COUNT(p.nome) as c"
+				+ "	FROM venda v"
+				+ "	JOIN produto_venda pv ON v.id = pv.id_venda"
+				+ "	JOIN produto p ON pv.id_produto = p.id"
+				+ "	WHERE v.id IN (SELECT id_venda FROM contato_venda WHERE id_contato IN (SELECT id FROM contato WHERE idade >= ? AND idade <= ?))"
+				+ "	GROUP BY p.nome"
+				+ "	ORDER BY c DESC"
+				+ "	LIMIT 1";
+		
+		int result = 0;
+		String res;
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			prstate.setInt(1, idadeMin);
+			prstate.setInt(2, idadeMax);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				res = resultado.getString("NOME");
+				result = resultado.getInt("c");
+			}
+			
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int statsMenosVentidoFaixaEtaria(int idadeMin, int idadeMax){
+		String sql = "SELECT p.nome, COUNT(p.nome) as c"
+				+ "	FROM venda v"
+				+ "	JOIN produto_venda pv ON v.id = pv.id_venda"
+				+ "	JOIN produto p ON pv.id_produto = p.id"
+				+ "	WHERE v.id IN (SELECT id_venda FROM contato_venda WHERE id_contato IN (SELECT id FROM contato WHERE idade >= ? AND idade <= ?))"
+				+ "	GROUP BY p.nome"
+				+ "	ORDER BY c ASC"
+				+ "	LIMIT 1";
+		
+		int result = 0;
+		String res;
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			prstate.setInt(1, idadeMin);
+			prstate.setInt(2, idadeMax);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				res = resultado.getString("NOME");
+				result = resultado.getInt("c");
+			}
+			
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

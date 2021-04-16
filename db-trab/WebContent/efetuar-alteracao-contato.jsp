@@ -12,8 +12,9 @@
 	<jsp:useBean id="contato" class="trab.AlterarContatoServlet"/>
 
 	<form action="efetuarAlteracaoContato" method="POST">
-		Nome: <input type="text" name="nome" value="${contato.lastContatoAlterado.nome}"/> <br />
+		Nome: <input type="text" name="nome" value="${contato.lastContatoAlterado.nome}" required/> <br />
 		Apelido: <input type="text" name="apelido" value="${contato.lastContatoAlterado.apelido}"/> <br />
+		Idade: <input type="number" name="idade" value="${contato.lastContatoAlterado.idade}" required/> <br />
 		Empresa: <input type="text" name="empresa" value="${contato.lastContatoAlterado.empresa}"/> <br />
 		Endereço: <input type="text" name="endereco" value="${contato.lastContatoAlterado.endereco}"/> <br />
 		Bairro: <input type="text" name="bairro" value="${contato.lastContatoAlterado.bairro}"/> <br />

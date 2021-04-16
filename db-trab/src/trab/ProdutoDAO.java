@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ProdutoDAO {
@@ -116,6 +118,12 @@ public class ProdutoDAO {
 			produto.setQuantidade(resultado.getInt("QUANTIDADE"));
 			produto.setPrecoCompra1(resultado.getString("PRECOCOMPRA1"));
 			produto.setPrecoCompra2(resultado.getString("PRECOCOMPRA2"));
+			int id_contato_temp = resultado.getInt("ID_CONTATO");
+			
+			AgendaDAO agdao = new AgendaDAO();
+			Contato fornecedor = new Contato();
+			fornecedor = agdao.buscarPorId(id_contato_temp);
+			produto.setFornecedor(fornecedor);
 				
 			resultado.close();
 			prstate.close();
@@ -153,5 +161,57 @@ public class ProdutoDAO {
 				throw new RuntimeException(e);
 			}
 		}
+	}
+	
+	public String statsPrecoFornecedor(){
+		String sql = "SELECT * FROM produto";
+		
+		ArrayList<String> prodName = new ArrayList<String>();
+		ArrayList<Integer> prodPrice = new ArrayList<Integer>();
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				prodName.add(resultado.getString("NOME"));
+				if(Float.parseFloat(resultado.getString("PRECOCOMPRA1")) < Float.parseFloat(resultado.getString("PRECOCOMPRA2"))) {
+					prodPrice.add(1);
+				}
+				else if(Float.parseFloat(resultado.getString("PRECOCOMPRA1")) > Float.parseFloat(resultado.getString("PRECOCOMPRA2"))) {
+					prodPrice.add(2);
+				}
+				else {
+					prodPrice.add(3);
+				}
+			}
+			resultado.close();
+			prstate.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		String str = "";
+		for(String st : prodName) {
+			if(!str.equals("")) {
+				str += (", " + "\"" + st + "\"");
+			}
+			else {
+				str += ("\"" + st + "\"");
+			}
+			
+		}
+		
+		return "const data = {\r\n"
+				+ "				labels: [" + str + "],\r\n"
+				+ "				datasets: [{\r\n"
+				+ "				  label: 'Fornecedor Mais Barato por Produto',\r\n"
+				+ "				  backgroundColor: 'rgb(255, 99, 132)',\r\n"
+				+ "				  borderColor: 'rgb(255, 99, 132)',\r\n"
+				+ "				  data: " + prodPrice.toString() +",\r\n"
+				+ "				}]\r\n"
+				+ "			};";
 	}
 }

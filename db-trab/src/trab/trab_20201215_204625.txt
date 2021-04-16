@@ -1,0 +1,4 @@
+WARNING - 20:46:26: First conversion pass
+WARNING - 20:46:29: Second pass : generating package usages
+WARNING - 20:46:29: Saving uml file /resource/db-trab/src/trab/trab.uml
+WARNING - 20:46:29: Uml file /resource/db-trab/src/trab/trab.uml saved

@@ -61,6 +61,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
+				contato.setIdade(Integer.parseInt(resultado.getString("IDADE")));
 				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
@@ -101,6 +102,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
+				contato.setIdade(Integer.parseInt(resultado.getString("IDADE")));
 				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
@@ -140,6 +142,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
+				contato.setIdade(Integer.parseInt(resultado.getString("IDADE")));
 				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
@@ -179,6 +182,7 @@ public class AgendaDAO {
 				contato.setId(resultado.getInt("ID"));
 				contato.setNome(resultado.getString("NOME"));
 				contato.setApelido(resultado.getString("APELIDO"));
+				contato.setIdade(Integer.parseInt(resultado.getString("IDADE")));
 				contato.setEmpresa(resultado.getString("EMPRESA"));
 				contato.setEndereco(resultado.getString("ENDERECO"));
 				contato.setBairro(resultado.getString("BAIRRO"));
@@ -232,21 +236,22 @@ public class AgendaDAO {
 			prstate.setLong(1, id);
 			
 			ResultSet resultado = prstate.executeQuery();
-			resultado.next();
-			
-			contato = new Contato();
-			contato.setId(resultado.getInt("ID"));
-			contato.setNome(resultado.getString("NOME"));
-			contato.setApelido(resultado.getString("APELIDO"));
-			contato.setEmpresa(resultado.getString("EMPRESA"));
-			contato.setEndereco(resultado.getString("ENDERECO"));
-			contato.setBairro(resultado.getString("BAIRRO"));
-			contato.setCidade(resultado.getString("CIDADE"));
-			contato.setTelefone1(resultado.getString("TELEFONE1"));
-			contato.setTelefone2(resultado.getString("TELEFONE2"));
-			contato.setTelefone3(resultado.getString("TELEFONE3"));
-			contato.setObservacao(resultado.getString("OBSERVACAO"));
-			contato.setCliente(resultado.getInt("CLIENTE"));
+			while(resultado.next()) {
+				contato = new Contato();
+				contato.setId(resultado.getInt("ID"));
+				contato.setNome(resultado.getString("NOME"));
+				contato.setApelido(resultado.getString("APELIDO"));
+				contato.setIdade(Integer.parseInt(resultado.getString("IDADE")));
+				contato.setEmpresa(resultado.getString("EMPRESA"));
+				contato.setEndereco(resultado.getString("ENDERECO"));
+				contato.setBairro(resultado.getString("BAIRRO"));
+				contato.setCidade(resultado.getString("CIDADE"));
+				contato.setTelefone1(resultado.getString("TELEFONE1"));
+				contato.setTelefone2(resultado.getString("TELEFONE2"));
+				contato.setTelefone3(resultado.getString("TELEFONE3"));
+				contato.setObservacao(resultado.getString("OBSERVACAO"));
+				contato.setCliente(resultado.getInt("CLIENTE"));
+			}
 				
 			resultado.close();
 			prstate.close();
@@ -259,7 +264,7 @@ public class AgendaDAO {
 	}
 	
 	public void alterar(Contato contato) {
-		String sql = "UPDATE contato SET NOME=?, APELIDO=?, EMPRESA=?, ENDERECO=?, BAIRRO=?, CIDADE=?, TELEFONE1=?, TELEFONE2=?, TELEFONE3=?, OBSERVACAO=?, CLIENTE=? WHERE ID=?";
+		String sql = "UPDATE contato SET NOME=?, APELIDO=?, EMPRESA=?, ENDERECO=?, BAIRRO=?, CIDADE=?, TELEFONE1=?, TELEFONE2=?, TELEFONE3=?, OBSERVACAO=?, CLIENTE=?, IDADE=? WHERE ID=?";
 		
 		try {
 			PreparedStatement prstate = connection.prepareStatement(sql);
@@ -275,7 +280,8 @@ public class AgendaDAO {
 			prstate.setString(9, contato.getTelefone3());
 			prstate.setString(10, contato.getObservacao());
 			prstate.setInt(11, contato.getCliente());
-			prstate.setInt(12, contato.getId());
+			prstate.setInt(12, contato.getIdade());
+			prstate.setInt(13, contato.getId());
 			
 			
 			prstate.execute();
