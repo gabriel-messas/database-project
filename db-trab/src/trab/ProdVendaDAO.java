@@ -22,6 +22,79 @@ public class ProdVendaDAO {
 	
 	static int index = 0;
 	
+	static String _less18;
+	public static String get_less18() {
+		return _less18;
+	}
+
+	public static void set_less18(String _less18) {
+		ProdVendaDAO._less18 = _less18;
+	}
+
+	public static String get_1830() {
+		return _1830;
+	}
+
+	public static void set_1830(String _1830) {
+		ProdVendaDAO._1830 = _1830;
+	}
+
+	public static String get_3150() {
+		return _3150;
+	}
+
+	public static void set_3150(String _3150) {
+		ProdVendaDAO._3150 = _3150;
+	}
+
+	public static String get_more50() {
+		return _more50;
+	}
+
+	public static void set_more50(String _more50) {
+		ProdVendaDAO._more50 = _more50;
+	}
+
+	public static String get__less18() {
+		return __less18;
+	}
+
+	public static void set__less18(String __less18) {
+		ProdVendaDAO.__less18 = __less18;
+	}
+
+	public static String get__1830() {
+		return __1830;
+	}
+
+	public static void set__1830(String __1830) {
+		ProdVendaDAO.__1830 = __1830;
+	}
+
+	public static String get__3150() {
+		return __3150;
+	}
+
+	public static void set__3150(String __3150) {
+		ProdVendaDAO.__3150 = __3150;
+	}
+
+	public static String get__more50() {
+		return __more50;
+	}
+
+	public static void set__more50(String __more50) {
+		ProdVendaDAO.__more50 = __more50;
+	}
+
+	static String _1830;
+	static String _3150;
+	static String _more50;
+	static String __less18;
+	static String __1830;
+	static String __3150;
+	static String __more50;
+	
 	public ProdVendaDAO() {
 		this.connection = new ConnectionFactory().getConnection();
 	}
@@ -194,6 +267,19 @@ public class ProdVendaDAO {
 			while(resultado.next()) {
 				res = resultado.getString("NOME");
 				result = resultado.getInt("c");
+				
+				if(idadeMin == 0) {
+					_less18 = res;
+				}
+				else if(idadeMin == 18) {
+					_1830 = res;
+				}
+				else if(idadeMin == 31) {
+					_3150 = res;
+				}
+				else {
+					_more50 = res;
+				}
 			}
 			
 			resultado.close();
@@ -229,6 +315,19 @@ public class ProdVendaDAO {
 			while(resultado.next()) {
 				res = resultado.getString("NOME");
 				result = resultado.getInt("c");
+				
+				if(idadeMin == 0) {
+					__less18 = res;
+				}
+				else if(idadeMin == 18) {
+					__1830 = res;
+				}
+				else if(idadeMin == 31) {
+					__3150 = res;
+				}
+				else {
+					__more50 = res;
+				}
 			}
 			
 			resultado.close();

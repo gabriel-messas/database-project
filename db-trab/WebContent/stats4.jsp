@@ -29,10 +29,13 @@
 </head>
 <body>
 
+	<jsp:useBean id="produto" class="trab.ProdVendaDAO"/>
+	
 	<div style="margin: auto; width: 70%; text-align: center;">
 		<div>
 			<canvas id="myChart"></canvas>
-			<p>aaaaaa</p>
+			<p id="id1"></p>
+			<p id="id2"></p>
 		</div>
 		
 		<form action="start.jsp">
@@ -56,8 +59,6 @@
 	
 	<br/>
 	
-	<jsp:useBean id="produto" class="trab.ProdVendaDAO"/>
-	
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', (event) => {
 			const labels = ['< 18', '18 a 30', '31 a 50', '> 50'];
@@ -71,6 +72,7 @@
 					    	   ${produto.statsMaisVentidoFaixaEtaria(31, 50)}, ${produto.statsMaisVentidoFaixaEtaria(50, 120)}
 					    ],
 					    backgroundColor: 'rgb(255, 99, 132)',
+					    stack: 'Stack 0',
 					},
 					{
 						label: 'Menos Vendido',
@@ -78,6 +80,7 @@
 					    	   ${produto.statsMenosVentidoFaixaEtaria(31, 50)}, ${produto.statsMenosVentidoFaixaEtaria(50, 120)}
 					    ],
 					    backgroundColor: 'rgb(132, 255, 99)',
+					    stack: 'Stack 1',
 					},
 				]
 			};
@@ -115,6 +118,9 @@
 			  document.getElementById('myChart'),
 			  config
 			);
+	    	
+			document.getElementById('id1').innerText = 'Produtos mais vendidos de cada faixa: ||  ${produto.get_less18()}  ||  ${produto.get_1830()}  ||  ${produto.get_3150()}  ||  ${produto.get_more50()}';
+			document.getElementById('id2').innerText = 'Produtos menos vendidos de cada faixa: ||  ${produto.get__less18()}  ||  ${produto.get__1830()}  ||  ${produto.get__3150()}  ||  ${produto.get__more50()}';
 		});
 		
 	</script>
