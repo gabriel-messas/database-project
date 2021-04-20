@@ -186,4 +186,46 @@ public class AvaliacaoDAO {
 		
 		return result;
 	}
+	
+	public int statsNotaBaixaPorEntregaLenta(){
+		String sql = "SELECT COUNT(*) as c FROM avaliacao a JOIN entrega e ON a.id_entrega = e.id WHERE a.nota < 5 AND CONVERT(e.data_entrega, DATE) > CONVERT(e.data_prevista, DATE)";
+		
+		int result = 0;
+		int result2 = 0;
+		
+		try {
+			PreparedStatement prstate = connection.prepareStatement(sql);
+			
+			ResultSet resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				result = (resultado.getInt("c"));
+			}
+			
+			resultado.close();
+			
+			sql = "SELECT COUNT(*) as c FROM avaliacao";
+			
+			prstate = connection.prepareStatement(sql);
+			
+			resultado = prstate.executeQuery();
+			
+			while(resultado.next()) {
+				result2 = (resultado.getInt("c"));
+			}
+			
+			resultado.close();
+			prstate.close();
+			
+			if(result2 != 0) {
+				result /= result2;
+				result *= 100;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
