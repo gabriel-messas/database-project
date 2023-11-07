@@ -1,2 +1,2 @@
-# trab-db
-Trabalho de Banco de Dados
+# database-project
+Computer Science University Graduation - Databases Discipline - Project Assignment - Database Modelling and Web Application Implementation
